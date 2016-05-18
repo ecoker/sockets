@@ -21,7 +21,8 @@ export default class App extends React.Component {
       privateConversationSocketId: null,
       currentRoom:'default'
     };
-    this.socket = io('http://localhost:3000');
+    var port = 
+    this.socket = io(`http://localhost${window.location.port.length > 0 ? ':' + window.location.port : ''}`);
     this.patch = require('socketio-wildcard')(io.Manager);
     this.patch(this.socket);
     this.socket.on('*', this.socketEvents);
